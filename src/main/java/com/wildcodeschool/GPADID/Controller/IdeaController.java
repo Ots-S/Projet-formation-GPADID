@@ -47,10 +47,13 @@ public class IdeaController {
     public String buyidea(Model out, @RequestParam(value = "id", required = true) Long id, HttpSession session) {
         User user = (User) session.getAttribute("sessionUser");
         Optional<Idea> idea = ideaRepository.findById(id);
+        List<UserIdea> usersIdea = user.getIdeaList();
         if (idea.isPresent()) {
             if (user.getCredit() >= 0 && user.getCredit() >= idea.get().getPrice()) {
                 user.setCredit(user.getCredit() - idea.get().getPrice());
-                userIdeaRepository.save(new UserIdea(idea.get(), user, null));
+                UserIdea newUserIdea = new UserIdea(idea.get(), user, null);
+                usersIdea.add(newUserIdea);
+                userIdeaRepository.save(newUserIdea);
                 userRepository.save(user);
                 return "purchased";
             }
