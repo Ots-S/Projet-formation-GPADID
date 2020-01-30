@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>ADMIN</title>
+</head>
+<body>
+
+AJOUTER UN THEME
+
+<div class="container">
+    <form th:action="@{/themeSave}" method="post" th:object="${theme}" >
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="descr">Description</label>
+            <input type="text" class="form-control" id="descr" name="description" required>
+        </div>
+        <button class="btn btn-info" type="submit">VALIDER</button>
+    </form>
+</div>
+
+AJOUTER UNE IDEE
+
+<div class="container my-5">
+    <form th:action="@{/ideaSave}" method="post" th:object="${idea}" >
+        <div class="form-group">
+            <label for="titleidea">Titre</label>
+            <input type="text" class="form-control" id="titleidea" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="descridea">Description Courte</label>
+            <input type="text" class="form-control" id="descridea" name="description" required>
+        </div>
+        <div class="form-group">
+            <label for="longdescridea">Description Longue</label>
+            <input type="text" class="form-control" id="longdescridea" name="longDescription" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Prix</label>
+            <input type="text" class="form-control" id="price" name="price" required>
+        </div>
+        <div class="form-group">
+            <label for="theme">Theme</label>
+            <input type="text" class="form-control" id="theme" name="theme" required>
+        </div>
+        <div class="form-group">
+            <label for="userid">User ID</label>
+            <input type="text" class="form-control" id="userid" name="user" required>
+        </div>
+        <button class="btn btn-info" type="submit">VALIDER</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
