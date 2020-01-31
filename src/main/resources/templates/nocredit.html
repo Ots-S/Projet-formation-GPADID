@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Absence de crédit</title>
+    <title>Profil</title>
 </head>
 <body>
 
@@ -25,12 +25,15 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{logout}">SE DECONNECTER</a>
             </li>
+            <li class="nav-item" th:if="${admin}">
+                <a class="nav-link" th:href="@{admin}">ADMINISTRATION</a></li>
+            </li>
         </ul>
     </div>
 </nav>
 
 <div class="container my-5">
-    <h5 class="card-header">Vous n'avez plus de crédits ! Cliquez <a>ici</a> pour acheter des crédits supplémentaires !</h5>
+    <h5 class="card-header">Vous n'avez plus de crédits ou  vous possédez déjà l'idée sélectionnée.</h5>
     <div class="card-body">
         <p class="card-text" th:text="|Vous avez actuellement : *{credits} crédit(s).|">description</p>
     </div>

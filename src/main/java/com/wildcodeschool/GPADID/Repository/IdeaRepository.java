@@ -13,4 +13,5 @@ import java.util.List;
 public interface IdeaRepository extends JpaRepository<Idea, Long> {
     List<Idea> findByThemeId(Long id);
     List<Idea> findByThemeAndUserIsNot(Theme theme, User user);
+    List<Idea> findByUser(User user);
 }

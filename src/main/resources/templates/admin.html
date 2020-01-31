@@ -4,13 +4,34 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>ADMIN</title>
+    <title>Admin</title>
 </head>
 <body>
-
-AJOUTER UN THEME
-
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">GPADID</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{profil}">PROFIL<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{catalogue}">CATALOGUE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{logout}">SE DECONNECTER</a>
+            </li>
+            <li class="nav-item" th:if="${admin}">
+                <a class="nav-link" th:href="@{admin}">ADMINISTRATION</a></li>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container my-5">
+    <h2 class="text-center">AJOUTER UN THEME</h2>
     <form th:action="@{/themeSave}" method="post" th:object="${theme}" >
         <div class="form-group">
             <label for="title">Titre</label>
@@ -24,9 +45,9 @@ AJOUTER UN THEME
     </form>
 </div>
 
-AJOUTER UNE IDEE
 
 <div class="container my-5">
+    <h2 class="text-center">AJOUTER UNE IDEE</h2>
     <form th:action="@{/ideaSave}" method="post" th:object="${idea}" >
         <div class="form-group">
             <label for="titleidea">Titre</label>

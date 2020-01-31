@@ -24,18 +24,22 @@ public class ThemeController {
     public String catalogue(Model out, HttpSession session) {
         User user = (User) session.getAttribute("sessionUser");
         out.addAttribute("themelist", themeRepository.findAll());
+        out.addAttribute("admin", user.isAdmin());
         return "themes";
     }
 
     @GetMapping("/selecttheme")
-    public String ideas(@RequestParam(value = "id", required = true) Long id, HttpSession session) {
+    public String ideas(@RequestParam(value = "id", required = true) Long id, HttpSession session, Model out) {
         User user = (User) session.getAttribute("sessionUser");
+        out.addAttribute("admin", user.isAdmin());
         return "redirect:/idea?themeid=" + id;
     }
 
     @PostMapping("/themeSave")
-    public String themeSave(@ModelAttribute Theme theme) {
+    public String themeSave(@ModelAttribute Theme theme, HttpSession session, Model out) {
+        User user = (User) session.getAttribute("sessionUser");
         themeRepository.save(theme);
+        out.addAttribute("admin", user.isAdmin());
         return "redirect:/admin";
     }
 }

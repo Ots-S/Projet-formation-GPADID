@@ -7,6 +7,7 @@
     <title>Profil</title>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">GPADID</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -23,6 +24,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{logout}">SE DECONNECTER</a>
+            </li>
+            <li class="nav-item" th:if="${admin}">
+                <a class="nav-link" th:href="@{admin}">ADMINISTRATION</a></li>
             </li>
         </ul>
     </div>

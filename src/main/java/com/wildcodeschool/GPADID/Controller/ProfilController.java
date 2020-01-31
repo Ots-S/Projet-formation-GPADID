@@ -36,6 +36,7 @@ public class ProfilController {
         }
         out.addAttribute("ideas", user.getIdeaList());
         out.addAttribute("credits", user.getCredit());
+        out.addAttribute("admin", user.isAdmin());
         return "profile";
     }
 }

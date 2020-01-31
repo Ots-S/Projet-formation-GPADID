@@ -24,36 +24,36 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{logout}">SE DECONNECTER</a>
             </li>
+            <li class="nav-item" th:if="${admin}">
+                <a class="nav-link" th:href="@{admin}">ADMINISTRATION</a>
+            </li>
         </ul>
     </div>
 </nav>
 
-<h1 class="text-center mt-5">Thèmes</h1>
-<p class="text-center">Choisissez un thème dans la liste !</p>
 
-    <div class="container">
-        <div class="row my-5">
-            <div class="col-6">
-                <div class="card my-5" th:each="eachtheme : ${themelist}">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${eachtheme.title}"></h5>
-                        <p class="card-text" th:text="${eachtheme.description}"></p>
-                        <a th:href="@{selecttheme(id=${eachtheme.getId()})}" class="btn btn-primary">SELECTIONNER</a>
-                    </div>
+<div class="container">
+    <h1 class="text-center mt-5">Thèmes</h1>
+    <div class="row">
+        <div class="col-sm-6 " th:each="eachtheme : ${themelist}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${eachtheme.title}"></h5>
+                    <p class="card-text" th:text="${eachtheme.description}"></p>
+                    <a th:href="@{selecttheme(id=${eachtheme.getId()})}" class="btn btn-primary">SELECTIONNER</a>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>

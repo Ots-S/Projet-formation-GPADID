@@ -37,9 +37,8 @@ public class IdeaController {
         //TODO faire un random
         User user = (User) session.getAttribute("sessionUser");
         Optional<Theme> theme = themeRepository.findById(id);
-        List<Idea> filterdideas = ideaRepository.findByThemeId(id);
-
         out.addAttribute("listideas", ideaRepository.findByThemeAndUserIsNot(theme.get(), user));
+        out.addAttribute("admin", user.isAdmin());
         return "idea";
     }
 
@@ -48,23 +47,38 @@ public class IdeaController {
         User user = (User) session.getAttribute("sessionUser");
         Optional<Idea> idea = ideaRepository.findById(id);
         List<UserIdea> usersIdea = user.getIdeaList();
+        out.addAttribute("admin", user.isAdmin());
         if (idea.isPresent()) {
-            if (user.getCredit() >= 0 && user.getCredit() >= idea.get().getPrice()) {
-                user.setCredit(user.getCredit() - idea.get().getPrice());
-                UserIdea newUserIdea = new UserIdea(idea.get(), user, null);
-                usersIdea.add(newUserIdea);
-                userIdeaRepository.save(newUserIdea);
-                userRepository.save(user);
-                return "purchased";
+            Optional<UserIdea> existing = userIdeaRepository.findByPurchasedIdeaAndPurchasedByUser(idea.get(), user);
+            out.addAttribute("ideaname", idea.get().getTitle());
+            try {
+                if (existing.isEmpty()) {
+                    if (user.getCredit() >= 0 && user.getCredit() >= idea.get().getPrice()) {
+                        user.setCredit(user.getCredit() - idea.get().getPrice());
+                        UserIdea newUserIdea = new UserIdea(idea.get(), user, null);
+                        usersIdea.add(newUserIdea);
+                        userIdeaRepository.save(newUserIdea);
+                        userRepository.save(user);
+                        return "purchased";
+                    }
+                }
+            } catch (Exception e) {
+                return "nocredit";
             }
         }
         out.addAttribute("credits", user.getCredit());
+
         return "nocredit";
     }
 
     @PostMapping("/ideaSave")
-    public String ideaSave(@ModelAttribute Idea idea) {
+    public String ideaSave(Model out, @ModelAttribute Idea idea, HttpSession session) {
+        User user = (User) session.getAttribute("sessionUser");
         ideaRepository.save(idea);
+        List<Idea> myideas = user.getUserIdeas();
+        myideas.add(idea);
+        userRepository.save(user);
+        out.addAttribute("admin", user.isAdmin());
         return "redirect:/admin";
     }
 }

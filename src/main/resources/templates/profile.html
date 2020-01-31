@@ -25,6 +25,9 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{logout}">SE DECONNECTER</a>
             </li>
+            <li class="nav-item" th:if="${admin}">
+                <a class="nav-link" th:href="@{admin}">ADMINISTRATION</a></li>
+            </li>
         </ul>
     </div>
 </nav>

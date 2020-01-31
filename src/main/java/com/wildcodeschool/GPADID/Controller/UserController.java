@@ -71,6 +71,7 @@ public class UserController {
         }
         out.addAttribute("theme", new Theme());
         out.addAttribute("idea", new Idea());
+        out.addAttribute("admin", user.isAdmin());
         return "admin";
     }
 

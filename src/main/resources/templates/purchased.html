@@ -7,6 +7,7 @@
     <title>Profil</title>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">GPADID</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -24,14 +25,23 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{logout}">SE DECONNECTER</a>
             </li>
+            <li class="nav-item" th:if="${admin}">
+                <a class="nav-link" th:href="@{admin}">ADMINISTRATION</a></li>
+            </li>
         </ul>
     </div>
 </nav>
-
-<h1>L'idée a bien été achetée !</h1>
-<a class="nav-link" th:href="@{/profil}">Retrouver cette idée dans votre profil<span class="sr-only">(current)</span></a>
-
-
+<div class="container d-flex justify-content-center my-5">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-center">L'idée a bien été achetée !</h2>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="|Vous avez acheté : *{ideaname}|"></h5>
+            <a class="nav-link" th:href="@{/profil}">Retrouvez cette idée dans votre profil</a>
+        </div>
+    </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
